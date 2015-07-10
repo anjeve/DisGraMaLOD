@@ -6,17 +6,16 @@ import org.jgrapht.DirectedGraph;
 import org.omg.PortableInterceptor.ObjectReferenceFactory;
 
 public class Slave extends Thread {
-
-    private static boolean free=true;
+    protected Synchronizer sync = null;
     private String slaveID;
     private DirectedGraph<String, DefaultEdge> graph;
     private Triple triple;
-    private printResults results = new printResults();
 
-    public Slave(String slaveID, DirectedGraph<String, DefaultEdge> graph, Triple triple) {
+    public Slave(String slaveID, DirectedGraph<String, DefaultEdge> graph, Triple triple, Synchronizer sync) {
         this.slaveID = slaveID;
         this.graph = graph;
         this.triple = triple;
+        this.sync = sync;
     }
 
     public void run() {
@@ -25,7 +24,9 @@ public class Slave extends Thread {
         if (connectedNode) {
             exactEdge = (graph.getEdge(triple.getSubject(), triple.getObject()).getUserObject()).equals((triple.getPredicate().getUserObject()));
         }
-       results.print(this.slaveID,this.triple,this.graph,connectedNode,exactEdge);
+
+        sync.print(this.slaveID,this.graph,this.triple,connectedNode,exactEdge);
+
     }
 
 }
