@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Master {
+    Synchronizer sync = new Synchronizer();
     private DirectedGraph<String, DefaultEdge> mainGraph;
+    private Triple tripleQuery;
 
-
-    public Master (DirectedGraph<String, DefaultEdge> mainGraph){
+    public Master (DirectedGraph<String, DefaultEdge> mainGraph, Triple tripleQuery){
         this.mainGraph = mainGraph;
+        this.tripleQuery = tripleQuery;
     }
 
 
@@ -29,4 +31,16 @@ public class Master {
 
         return graphs;
     }
+
+    public void slaveForwarding (List<DirectedGraph<String, DefaultEdge>> graphs, int slaveNumber){
+
+        List<Slave> slaveList = new ArrayList<Slave>();
+        for (int i=0;i<slaveNumber;i++){
+            slaveList.add(i, new Slave("Slave_"+(i+1), graphs.get(i), this.tripleQuery,sync));
+            slaveList.get(i).start();
+        }
+
+
+    }
+
 }
