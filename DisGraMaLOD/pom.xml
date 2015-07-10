@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>DisGraMaLOD</groupId>
+  <artifactId>DisGraMaLOD</artifactId>
+  <version>1</version>
+  <packaging>jar</packaging>
+
+  <name>DisGraMaLOD</name>
+  <url>http://maven.apache.org</url>
+
+  <repositories>
+      <repository>
+          <id>nxparser-repo</id>
+          <url>http://nxparser.googlecode.com/svn/repository</url>
+      </repository>
+      <repository>
+          <id>nxparser-snapshots</id>
+          <url>http://nxparser.googlecode.com/svn/snapshots</url>
+      </repository>
+  </repositories>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.flink</groupId>
+      <artifactId>flink-java</artifactId>
+      <version>0.9.0</version>
+    </dependency>
+
+      <dependency>
+          <groupId>org.apache.flink</groupId>
+          <artifactId>flink-clients</artifactId>
+          <version>0.9.0</version>
+      </dependency>
+
+
+      <dependency>
+          <groupId>net.sourceforge.argparse4j</groupId>
+          <artifactId>argparse4j</artifactId>
+          <version>0.4.4</version>
+      </dependency>
+      <dependency>
+          <groupId>org.semanticweb.yars</groupId>
+          <artifactId>nxparser</artifactId>
+          <version>1.2.6</version>
+      </dependency>
+      <dependency>
+          <groupId>jgraph</groupId>
+          <artifactId>jgraph</artifactId>
+          <version>5.13.0.0</version>
+      </dependency>
+      <dependency>
+          <groupId>org.jgrapht</groupId>
+          <artifactId>jgrapht-core</artifactId>
+          <version>0.9.0</version>
+      </dependency>
+      <dependency>
+          <groupId>org.jgrapht</groupId>
+          <artifactId>jgrapht-demo</artifactId>
+          <version>0.9.0</version>
+      </dependency>
+      <dependency>
+          <groupId>org.jgrapht</groupId>
+          <artifactId>jgrapht-ext</artifactId>
+          <version>0.9.0</version>
+      </dependency>
+
+  </dependencies>
+</project>

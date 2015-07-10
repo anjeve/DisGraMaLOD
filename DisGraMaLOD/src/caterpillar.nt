@@ -1,0 +1,11 @@
+<http://dbpedia.org/resource/Testa> <http://dbpedia.org/property/wikiPageUsesTemplate> <http://dbpedia.org/resource/Testb> .
+<http://dbpedia.org/resource/Testb> <http://dbpedia.org/property/wikiPageUsesTemplate> <http://dbpedia.org/resource/Testc> .
+<http://dbpedia.org/resource/Testac> <http://dbpedia.org/property/wikiPageUsesTemplate> <http://dbpedia.org/resource/Testbc> .
+<http://dbpedia.org/resource/Testbc> <http://dbpedia.org/property/wikiPageUsesTemplate> <http://dbpedia.org/resource/Testcc> .
+<http://dbpedia.org/resource/Testa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/resource/class1> .
+<http://dbpedia.org/resource/Testb> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/resource/class1> .
+<http://dbpedia.org/resource/Testc> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/resource/class2> .
+<http://dbpedia.org/resource/Testac> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/resource/class1> .
+<http://dbpedia.org/resource/Testbc> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/resource/class1> .
+<http://dbpedia.org/resource/Testcc> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/resource/class2> .
+<http://dbpedia.org/resource/Testcc> <http://www.w3.org/2000/01/rdf-schema#label> "Test CC" . 
