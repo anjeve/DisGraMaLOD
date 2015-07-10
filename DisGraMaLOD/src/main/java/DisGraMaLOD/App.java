@@ -15,7 +15,7 @@ public class App {
 
     public static void main( String[] args ) {
         Synchronizer sync = new Synchronizer();
-        int slaveNumber = 2;
+        int slaveNumber = 3;
         List<DirectedGraph<String, DefaultEdge>> graphs = new ArrayList<DirectedGraph<String, DefaultEdge>>();
 
 
@@ -39,7 +39,7 @@ public class App {
 
         //Each slave take care of the matching of a single sub-graph and return
 
- List<Slave> slaveList = new ArrayList<Slave>();
+        List<Slave> slaveList = new ArrayList<Slave>();
         List<Thread> threadList = new ArrayList<Thread>();
         for (int i=0;i<slaveNumber;i++){
             slaveList.add(i, new Slave("Slave_"+(i+1), graphs.get(i), tripleTest,sync));

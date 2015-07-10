@@ -23,8 +23,9 @@ public class Master {
         graphTemp = mainGraph;
         //Divide the main graph in n subgraphs (Returned as List of graphs). Each graph will be passed to a slave
 
-        graphs.add(graphTemp);
-        graphs.add(graphTemp);
+        for (int i=0; i<n; i++){
+            graphs.add(graphTemp);
+        }
 
         return graphs;
     }
