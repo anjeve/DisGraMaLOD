@@ -43,35 +43,6 @@ public class App {
         //Each slave cares of the matching of a single sub-graph and return
         //master.slaveForwarding(graphs,slaveNumber); //should return a boolean value if the matching is present
 
-
-
-
-       /* WeightedGraph<String, DefaultEdge> mainGraph = new DefaultDirectedWeightedGraph<String, DefaultEdge>(DefaultEdge.class);
-        mainGraph.addVertex("a");
-        mainGraph.addVertex("b");
-        mainGraph.addVertex("c");
-        mainGraph.addVertex("d");
-
-        DefaultEdge e1 = new DefaultEdge("e1");
-        mainGraph.addEdge("a", "b", e1);
-        mainGraph.setEdgeWeight(e1,1);
-        DefaultEdge e2 = new DefaultEdge("e2");
-        mainGraph.addEdge("a", "c",e2);
-        mainGraph.setEdgeWeight(e2, 2);
-        DefaultEdge e3 = new DefaultEdge("e3");
-        mainGraph.addEdge("a", "d",e3);
-        mainGraph.setEdgeWeight(e3, 3);
-        DefaultEdge e4 = new DefaultEdge("e4");
-        mainGraph.addEdge("d", "b",e4);
-        mainGraph.setEdgeWeight(e4,4);
-        DefaultEdge e5 = new DefaultEdge("e5");
-        mainGraph.addEdge("d", "c",e5);
-        mainGraph.setEdgeWeight(e5, 5);
-        DefaultEdge e6 = new DefaultEdge("e6");
-        mainGraph.addEdge("b", "c",e6);
-        mainGraph.setEdgeWeight(e6, 6);*/
-
-
         DefaultDirectedGraph <String, MyWeightedEdge> mainGraph =new DefaultDirectedGraph <String, MyWeightedEdge>(MyWeightedEdge.class);
 
         mainGraph.addVertex("v1");
