@@ -26,7 +26,6 @@ public class Slave extends Thread {
         }
 
         sync.print(this.slaveID,this.graph,this.triple,connectedNode,exactEdge);
-
     }
 
 }
