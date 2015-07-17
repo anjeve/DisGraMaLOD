@@ -93,7 +93,7 @@ public class App {
 
         Master master = new Master(mainGraph, tripleQuery);
 
-        master.queryRelaxation(mainGraph,1, 2);
+        graphs = master.queryRelaxation(mainGraph,1, 2);
 
         System.out.println("Final realxed query set: ");
         for (int i=0; i< graphs.size(); i++){graphs.size();

@@ -59,14 +59,14 @@ public class Master {
     }*/
 
 
-    public List<DefaultDirectedGraph<String, MyWeightedEdge>> queryRelaxation (DefaultDirectedGraph<String, MyWeightedEdge> graph, int currentLevel, int threshold){
+    public List<DefaultDirectedGraph<String, MyWeightedEdge>> queryRelaxation(DefaultDirectedGraph<String, MyWeightedEdge> graph, int currentLevel, int threshold) {
         List<DefaultDirectedGraph<String, MyWeightedEdge>> relaxedQuerySet = new ArrayList<DefaultDirectedGraph<String, MyWeightedEdge>>();
         List<MyWeightedEdge> newEdgeList = new ArrayList<MyWeightedEdge>();
         int numEdges = graph.edgeSet().size();
 
-        if (currentLevel < numEdges - 1){
-            System.out.println("MASTER level_"+currentLevel+" - IN:");
-            System.out.println("numEdges: "+numEdges+" - graph: "+graph);
+        if (currentLevel < numEdges - 1) {
+            System.out.println("MASTER level_" + currentLevel + " - IN:");
+            System.out.println("numEdges: " + numEdges + " - graph: " + graph);
             System.out.println("");
             relaxedQuerySet.addAll(queryRelaxation(graph, currentLevel + 1, threshold));
             System.out.println("MASTER level_" + currentLevel + " - OUT:");
@@ -76,15 +76,14 @@ public class Master {
         // if exist j, so that, p[j] < e_m-(l-j) the x <- MAX{j: p[j] < e_m-(l-j)
         // as I need the maximum I'll start from l to 1
         int l = numEdges - threshold;
-        int j=1;
-        int x=0; //max j so that p[j] < e_m-(l-j)
+        int j = 1;
+        int x = 0; //max j so that p[j] < e_m-(l-j)
 
 
         MyWeightedEdge element1 = new MyWeightedEdge();
         MyWeightedEdge element2 = new MyWeightedEdge();
         MyWeightedEdge e_t = new MyWeightedEdge();
         MyWeightedEdge e_tp1 = new MyWeightedEdge();
-
 
 
         Iterator<MyWeightedEdge> itr1 = graph.edgeSet().iterator();
@@ -95,72 +94,72 @@ public class Master {
         boolean found = false;
 
 
-        if(itr1.hasNext()){
-            element1=itr1.next();
+        if (itr1.hasNext()) {
+            element1 = itr1.next();
         }
-        if(itr2.hasNext()){
-            element1=itr2.next();
+        if (itr2.hasNext()) {
+            element1 = itr2.next();
         }
 
-        for (int temp=0; temp<threshold && itr2.hasNext(); temp++){
+        for (int temp = 0; temp < threshold && itr2.hasNext(); temp++) {
             element2 = itr2.next();
         }
 
-        while (j<=l){
+        while (j <= l) {
             //I should get the weight of each edge
-            System.out.println("MASTER level_"+currentLevel+" Evaluating edges weight: " + j+ " | "+ element1.getWeight() +" < "+element2.getWeight());
-            if (element1.getWeight()<element2.getWeight()){ //simulating weight
+            System.out.println("MASTER level_" + currentLevel + " Evaluating edges weight: " + j + " | " + element1.getWeight() + " < " + element2.getWeight());
+            if (element1.getWeight() < element2.getWeight()) { //simulating weight
                 x = j;
                 e_t = element1;
-                found=true;
+                found = true;
             }
 
-            if(itr1.hasNext()){
-                element1=itr1.next();
+            if (itr1.hasNext()) {
+                element1 = itr1.next();
             }
-            if (found){
-                e_tp1=element1;
-                found=false;
+            if (found) {
+                e_tp1 = element1;
+                found = false;
             }
-            if(itr2.hasNext()){
-                element2=itr2.next();
+            if (itr2.hasNext()) {
+                element2 = itr2.next();
             }
             j++;
-        }
 
-        System.out.println("MASTER level_"+currentLevel+" EdgeList: " +graph.edgeSet());
-        System.out.println("MASTER level_"+currentLevel+" MAX: " +x);
-        System.out.println("MASTER level_"+currentLevel+" e_t : " +e_t );
-        System.out.println("MASTER level_"+currentLevel+" e_tp1 : " +e_tp1 );
+            System.out.println("MASTER level_" + currentLevel + " EdgeList: " + graph.edgeSet());
+            System.out.println("MASTER level_" + currentLevel + " MAX: " + x);
+            System.out.println("MASTER level_" + currentLevel + " e_t : " + e_t);
+            System.out.println("MASTER level_" + currentLevel + " e_tp1 : " + e_tp1);
 
-        DefaultDirectedGraph<String, MyWeightedEdge> newGraph = new DefaultDirectedGraph<String, MyWeightedEdge>(MyWeightedEdge.class);
-        Iterator<MyWeightedEdge> itr3 = graph.edgeSet().iterator();
-        MyWeightedEdge element3 = new MyWeightedEdge();
+            DefaultDirectedGraph<String, MyWeightedEdge> newGraph = new DefaultDirectedGraph<String, MyWeightedEdge>(MyWeightedEdge.class);
+            Iterator<MyWeightedEdge> itr3 = graph.edgeSet().iterator();
+            MyWeightedEdge element3 = new MyWeightedEdge();
 
-        if (x>=l-threshold){
-            for (int temp=1; temp<x; temp++){
-                if (itr3.hasNext()) {
-                    element3 = itr3.next();
-                    newGraph.addVertex(element3.getSource().toString());
-                    newGraph.addVertex(element3.getTarget().toString());
-                    newGraph.addEdge(element3.getSource().toString(),element3.getTarget().toString(), element3);
+            if (x >= l - threshold) {
+                for (int temp = 1; temp < x; temp++) {
+                    if (itr3.hasNext()) {
+                        element3 = itr3.next();
+                        newGraph.addVertex(element3.getSource().toString());
+                        newGraph.addVertex(element3.getTarget().toString());
+                        newGraph.addEdge(element3.getSource().toString(), element3.getTarget().toString(), element3);
+                    }
                 }
-            }
 
           /*  newGraph.addVertex(element3.getSource().toString());
             newGraph.addVertex(element3.getTarget().toString());
             newGraph.addEdge(element3.getSource().toString(),element3.getTarget().toString(), e_tp1);*/
-            System.out.println("MASTER level_"+currentLevel+" New subgraph: "+newGraph);
+                System.out.println("MASTER level_" + currentLevel + " New subgraph: " + newGraph);
 
 
-        System.out.println("MASTER level_"+currentLevel+" directedGraph "+graph);
-        System.out.println("MASTER level_"+currentLevel+" directedGraph.edgeSet() "+graph.edgeSet());
+                System.out.println("MASTER level_" + currentLevel + " directedGraph " + graph);
+                System.out.println("MASTER level_" + currentLevel + " directedGraph.edgeSet() " + graph.edgeSet());
 
-        System.out.println("MASTER level_"+currentLevel+"     relaxedQuerySet: " + relaxedQuerySet.add(newGraph));
+                System.out.println("MASTER level_" + currentLevel + "     relaxedQuerySet: " + relaxedQuerySet.add(newGraph));
 
-        // relaxedQuerySet.addAll(queryRelaxation(newGraph, currentLevel, threshold));
+                relaxedQuerySet.addAll(queryRelaxation(newGraph, currentLevel, threshold));
+            }
+
         }
-
         return relaxedQuerySet;
     }
 /*
