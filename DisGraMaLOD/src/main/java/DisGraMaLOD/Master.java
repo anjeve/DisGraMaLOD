@@ -68,8 +68,9 @@ public class Master {
             System.out.println("MASTER level_"+currentLevel+" - IN:");
             System.out.println("numEdges: "+numEdges+" - graph: "+graph);
             System.out.println("");
-            relaxedQuerySet.addAll(queryRelaxation(graph, currentLevel+1, threshold));
-            System.out.println("MASTER level_"+currentLevel+" - OUT:");
+            relaxedQuerySet.addAll(queryRelaxation(graph, currentLevel + 1, threshold));
+            System.out.println("MASTER level_" + currentLevel + " - OUT:");
+            System.out.println("");
         }
 
         // if exist j, so that, p[j] < e_m-(l-j) the x <- MAX{j: p[j] < e_m-(l-j)
@@ -94,9 +95,14 @@ public class Master {
         boolean found = false;
 
 
-        element1 = itr1.next();
-        element2 = itr2.next();
-        for (int temp=0; temp<threshold; temp++){
+        if(itr1.hasNext()){
+            element1=itr1.next();
+        }
+        if(itr2.hasNext()){
+            element1=itr2.next();
+        }
+
+        for (int temp=0; temp<threshold && itr2.hasNext(); temp++){
             element2 = itr2.next();
         }
 
@@ -135,23 +141,26 @@ public class Master {
             for (int temp=1; temp<x; temp++){
                 if (itr3.hasNext()) {
                     element3 = itr3.next();
-                    newGraph.addVertex("s");
-                    newGraph.addVertex("a");
-                    newGraph.addEdge("s","a", element3);
+                    newGraph.addVertex(element3.getSource().toString());
+                    newGraph.addVertex(element3.getTarget().toString());
+                    newGraph.addEdge(element3.getSource().toString(),element3.getTarget().toString(), element3);
                 }
             }
 
-            newGraph.addVertex("g");
-            newGraph.addVertex("r");
-            newGraph.addEdge("g", "r", e_tp1);
+          /*  newGraph.addVertex(element3.getSource().toString());
+            newGraph.addVertex(element3.getTarget().toString());
+            newGraph.addEdge(element3.getSource().toString(),element3.getTarget().toString(), e_tp1);*/
             System.out.println("MASTER level_"+currentLevel+" New subgraph: "+newGraph);
-        }
+
 
         System.out.println("MASTER level_"+currentLevel+" directedGraph "+graph);
         System.out.println("MASTER level_"+currentLevel+" directedGraph.edgeSet() "+graph.edgeSet());
 
         System.out.println("MASTER level_"+currentLevel+"     relaxedQuerySet: " + relaxedQuerySet.add(newGraph));
-        System.out.println("");
+
+        // relaxedQuerySet.addAll(queryRelaxation(newGraph, currentLevel, threshold));
+        }
+
         return relaxedQuerySet;
     }
 /*
