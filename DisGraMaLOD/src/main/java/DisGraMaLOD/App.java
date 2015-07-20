@@ -97,7 +97,7 @@ public class App {
 
         System.out.println("Final realxed query set: ");
         for (int i=0; i< graphs.size(); i++){graphs.size();
-            System.out.print(graphs.get(i));
+            System.out.println((i+1)+": "+graphs.get(i));
         }
     }
 }
